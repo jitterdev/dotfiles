@@ -18,5 +18,6 @@ done
 
 dot checkout
 dot config status.showUntrackedFiles no
+dot config clean.requireForce true
 
 echo "Done!"
