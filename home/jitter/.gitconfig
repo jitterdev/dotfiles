@@ -6,3 +6,6 @@
 	navigate = true
 [merge]
 	conflictStyle = zdiff3
+[user]
+	name = Jitter
+	email = jitterdev@users.noreply.github.com
