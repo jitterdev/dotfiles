@@ -104,51 +104,56 @@
             "key": "Terminal",
             "keyColor": "#94e2d5" // Teal
         },
+        {
+            "type": "terminalfont",
+            "key": "Term Font",
+            "keyColor": "#89dceb" // Sky
+        },
 
         {
             "type": "cpu",
             "key": "CPU",
-            "keyColor": "#89dceb" // Sky
+            "keyColor": "#74c7ec" // Sapphire
         },
         {
             "type": "gpu",
-            "keyColor": "#74c7ec" // Sapphire
+            "keyColor": "#89b4fa" // Blue
         },
         {
             "type": "memory",
             "key": "Memory",
-            "keyColor": "#89b4fa" // Blue
+            "keyColor": "#b4befe" // Lavender
         },
         {
             "type": "swap",
             "key": "Swap",
-            "keyColor": "#b4befe" // Lavender
+            "keyColor": "#cba6f7" // Mauve
         },
         {
             "type": "disk",
             "key": "{1}",
-            "keyColor": "#cba6f7" // Mauve
+            "keyColor": "#f38ba8" // Red (Loop)
         },
         {
             "type": "battery",
             "key": "Battery",
-            "keyColor": "#f38ba8" // Red
+            "keyColor": "#fab387" // Peach
         },
         {
             "type": "poweradapter",
             "key": "Power",
-            "keyColor": "#fab387" // Peach
+            "keyColor": "#f9e2af" // Yellow
         },
         
         {
             "type": "locale",
             "key": "Locale",
-            "keyColor": "#f9e2af" // Yellow
+            "keyColor": "#a6e3a1" // Green
         },
         {
             "type": "localip",
             "key": "{2}",
-            "keyColor": "#a6e3a1" // Green
+            "keyColor": "#94e2d5" // Teal
         }
     ]
 }
