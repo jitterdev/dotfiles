@@ -9,7 +9,7 @@ set -x FZF_DEFAULT_OPTS "--preview '$HOME/.config/fish/functions/fzf_preview.sh 
 
 set -x FZF_DEFAULT_OPTS "--preview '$HOME/.config/fish/functions/fzf_preview.sh {}' --bind 'ctrl-c:execute(kitty +kitten icat --clear)+abort'"
 set fzf_preview_file_cmd ~/.config/fish/functions/fzf_preview.sh
-set fzf_preview_dir_cmd eza --all --color=always
+set fzf_preview_dir_cmd ~/.config/fish/functions/fzf_preview_dir.sh
 
 # overwrite greeting
 # potentially disabling fastfetch
