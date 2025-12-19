@@ -8,6 +8,7 @@ set -gx MANROFFOPT "-c"
 set -gx MANPAGER "sh -c 'col -bx | bat -l man -p'"
 set -gx SYSTEMD_COLORS 1
 set -gx SYSTEMD_PAGER "moor"
+set -gx SYSTEMD_PAGERSECURE true
 
 ## done (handled by fisher, but vars are universal)
 set -U __done_min_cmd_duration 10000
@@ -103,7 +104,7 @@ alias gitpkg='pacman -Q | grep -i "\-git" | wc -l'
 alias update='sudo pacman -Syu'
 alias mirror="sudo cachyos-rate-mirrors"
 alias cleanup='sudo pacman -Rns (pacman -Qtdq)'
-alias jctl="journalctl -p 3 -xb --no-pager | moor"
+alias jctl="journalctl -p 3 -xb"
 alias dm='sudo dmesg --human --color=always | moor'
 
 alias please='sudo'
