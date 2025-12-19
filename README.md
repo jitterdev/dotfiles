@@ -9,10 +9,10 @@
 
 - **system-wide sane fish defaults**: bat (replacing cat for concatenation), moor (replacing less for paging)
 - **utility aliases**: lots of them
-<img width="50%" height="680" src="https://raw.githubusercontent.com/jitterdev/dotfiles/master/preview/aliases.png" />
+<img width="500" height="100%" src="https://raw.githubusercontent.com/jitterdev/dotfiles/master/preview/aliases.png" />
 
-* **forked plasma task switcher theme**
-<img width="75%" src="https://raw.githubusercontent.com/jitterdev/dotfiles/master/preview/task_switcher.gif" />
+* **forked plasma task switcher theme**: based on [Modern Informative](https://store.kde.org/p/2128868), adds an x to close applications and makes middle-clicking applications close them.
+<img width="500" src="https://raw.githubusercontent.com/jitterdev/dotfiles/master/preview/task_switcher.gif" />
 
-
-
+* **fzf improvements**: image (kitty's icat), video preview (ffmpegthumbnailer), pdf (pdftotext), and archive (atool) support
+<img width="500" src="https://raw.githubusercontent.com/jitterdev/dotfiles/master/preview/fzf.gif" />
