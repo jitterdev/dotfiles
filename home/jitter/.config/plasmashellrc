@@ -5,17 +5,19 @@ floating=1
 thickness=44
 
 [PlasmaViews][Panel 23]
+alignment=132
 floating=1
+panelLengthMode=0
 panelOpacity=0
 
 [PlasmaViews][Panel 23][Defaults]
-thickness=32
+thickness=36
 
 [PlasmaViews][Panel 51]
 floating=1
 
 [PlasmaViews][Panel 51][Defaults]
-thickness=27
+thickness=44
 
 [PlasmaViews][Panel 53]
 floating=1
