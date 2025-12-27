@@ -23,7 +23,7 @@ PACKAGES=(
     atool
     poppler
     eza
-    vicinae-git
+    vicinae-bin
     spotify-launcher
     spicetify
     plasma-meta
