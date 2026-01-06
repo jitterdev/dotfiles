@@ -27,6 +27,7 @@ PACKAGES=(
     spotify-launcher
     spicetify
     plasma-meta
+    github-cli
 )
 
 # AUR helper installation
