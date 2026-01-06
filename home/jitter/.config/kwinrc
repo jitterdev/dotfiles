@@ -7,6 +7,9 @@ Id_1=a3290cb1-26ef-4dc1-9ee4-c27399503419
 Number=1
 Rows=1
 
+[NightColor]
+Active=true
+
 [TabBox]
 DelayTime=0
 HighlightWindows=false
