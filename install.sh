@@ -67,7 +67,7 @@ install_packages() {
     local aur=()
 
     echo "Sorting packages..."
-    sudo pacman -Sy
+    sudo pacman -Syu --noconfirm
 
     for pkg in "${PACKAGES[@]}"; do
         if pacman -Si "$pkg" &>/dev/null; then
