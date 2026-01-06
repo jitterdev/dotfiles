@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-REPO_URL="${1:-git@github.com:jitterdev/dotfiles.git}"
+REPO_URL="${1:-https://github.com/jitterdev/dotfiles.git}"
 DOTFILES_DIR="$HOME/.dotfiles"
+BACKUP_DIR="$HOME/.dotfiles-backup"
 FISHER_PLUGINS="$HOME/.config/fish/fish_plugins"
 
-# Required packages
 PACKAGES=(
     git
     git-delta
@@ -30,44 +30,29 @@ PACKAGES=(
     github-cli
 )
 
-# AUR helper installation
 install_aur_helper() {
-    if command -v paru &>/dev/null || command -v yay &>/dev/null; then
-        return
-    fi
+    command -v paru &>/dev/null || command -v yay &>/dev/null && return
 
     echo "No AUR helper found. Installing paru..."
-
     sudo pacman -S --needed --noconfirm base-devel git
 
     local tmpdir
     tmpdir=$(mktemp -d)
-    trap "rm -rf '$tmpdir'" EXIT
+    trap "rm -rf '$tmpdir'" RETURN
 
     git clone https://aur.archlinux.org/paru-bin.git "$tmpdir/paru-bin"
-    cd "$tmpdir/paru-bin"
-    makepkg -si --noconfirm
-    cd - >/dev/null
-
-    trap - EXIT
-    rm -rf "$tmpdir"
+    (cd "$tmpdir/paru-bin" && makepkg -si --noconfirm)
 
     echo "paru installed successfully."
 }
 
-# Package installation
 install_packages() {
-    if ! command -v pacman &>/dev/null; then
-        echo "Error: pacman not found. This script requires an Arch-based system."
-        exit 1
-    fi
-
+    command -v pacman &>/dev/null || { echo "Error: pacman not found."; exit 1; }
     [[ ${#PACKAGES[@]} -eq 0 ]] && return
 
-    local official=()
-    local aur=()
+    local official=() aur=()
 
-    echo "Sorting packages..."
+    echo "Syncing package database..."
     sudo pacman -Syu --noconfirm
 
     for pkg in "${PACKAGES[@]}"; do
@@ -85,18 +70,13 @@ install_packages() {
 
     if [[ ${#aur[@]} -gt 0 ]]; then
         install_aur_helper
-
-        if command -v paru &>/dev/null; then
-            echo "Installing AUR packages with paru: ${aur[*]}"
-            paru -S --needed --noconfirm "${aur[@]}"
-        elif command -v yay &>/dev/null; then
-            echo "Installing AUR packages with yay: ${aur[*]}"
-            yay -S --needed --noconfirm "${aur[@]}"
-        fi
+        local helper
+        helper=$(command -v paru || command -v yay)
+        echo "Installing AUR packages: ${aur[*]}"
+        "$helper" -S --needed --noconfirm "${aur[@]}"
     fi
 }
 
-# Fisher plugins installation
 install_fisher_plugins() {
     if [[ ! -f "$FISHER_PLUGINS" ]]; then
         echo "No fish_plugins file found at $FISHER_PLUGINS, skipping Fisher plugins"
@@ -112,26 +92,41 @@ install_fisher_plugins() {
     fish -c "fisher update"
 }
 
-# Dotfiles setup
-install_packages
-
-git clone --bare "$REPO_URL" "$DOTFILES_DIR"
-
 dot() {
-    git --git-dir="$HOME/.dotfiles" --work-tree=/ "$@"
+    sudo git --git-dir="$DOTFILES_DIR" --work-tree=/ "$@"
 }
 
-# Backup conflicting files
-dot checkout 2>&1 | grep -E "^\s+" | awk '{print $1}' | while read -r file; do
-    mkdir -p "$HOME/.dotfiles-backup/$(dirname "$file")"
-    mv "/$file" "$HOME/.dotfiles-backup/$file"
-done
+setup_dotfiles() {
+    if [[ -d "$DOTFILES_DIR" ]]; then
+        echo "Error: $DOTFILES_DIR already exists"
+        exit 1
+    fi
 
-dot checkout
-dot config status.showUntrackedFiles no
-dot config clean.requireForce true
+    echo "Cloning dotfiles..."
+    git clone --bare "$REPO_URL" "$DOTFILES_DIR"
 
-# Install Fisher plugins after dotfiles are in place
+    set +e
+    checkout_output=$(dot checkout 2>&1)
+    checkout_status=$?
+    set -e
+
+    if [[ $checkout_status -ne 0 ]]; then
+        echo "Backing up conflicting files..."
+        echo "$checkout_output" | grep -E "^\s+" | awk '{print $1}' | while read -r file; do
+            [[ -z "$file" ]] && continue
+            mkdir -p "$BACKUP_DIR/$(dirname "$file")"
+            sudo mv "/$file" "$BACKUP_DIR/$file"
+        done
+        dot checkout
+    fi
+
+    dot config status.showUntrackedFiles no
+    dot config clean.requireForce true
+}
+
+# Main
+install_packages
+setup_dotfiles
 install_fisher_plugins
 
 echo "Done!"
