@@ -28,6 +28,8 @@ PACKAGES=(
     spicetify
     plasma-meta
     github-cli
+    profile-sync-daemon
+    zen-browser-bin
 )
 
 install_aur_helper() {
