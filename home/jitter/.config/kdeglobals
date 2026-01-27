@@ -120,15 +120,19 @@ ForegroundVisited=203, 166, 247
 
 [General]
 ColorSchemeHash=318898541a271af612b5ed5ec1c5661d725d0f16
+LastUsedCustomAccentColor=233,58,154
 TerminalApplication=kitty
 TerminalService=kitty.desktop
 XftAntialias=true
 XftHintStyle=hintslight
-XftSubPixel=none
+XftSubPixel=rgb
 font=JetBrains Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 menuFont=JetBrains Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 smallestReadableFont=JetBrains Mono,8,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 toolBarFont=JetBrains Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
+
+[Icons]
+Theme=breeze-dark
 
 [KDE]
 AnimationDurationFactor=0.25
@@ -144,10 +148,10 @@ Show Inline Previews=true
 Show Preview=false
 Show Speedbar=true
 Show hidden files=true
-Sort by=Name
+Sort by=Date
 Sort directories first=true
 Sort hidden files last=false
-Sort reversed=true
+Sort reversed=false
 Speedbar Width=140
 View Style=DetailTree
 
