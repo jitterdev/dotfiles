@@ -8,7 +8,8 @@ thickness=44
 alignment=132
 floating=1
 panelLengthMode=0
-panelOpacity=0
+panelOpacity=2
+panelVisibility=0
 
 [PlasmaViews][Panel 23][Defaults]
 thickness=36

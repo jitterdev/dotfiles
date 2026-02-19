@@ -123,6 +123,7 @@ ColorSchemeHash=318898541a271af612b5ed5ec1c5661d725d0f16
 LastUsedCustomAccentColor=233,58,154
 TerminalApplication=kitty
 TerminalService=kitty.desktop
+UseSystemBell=true
 XftAntialias=true
 XftHintStyle=hintslight
 XftSubPixel=rgb
