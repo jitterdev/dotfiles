@@ -30,6 +30,8 @@ PACKAGES=(
     github-cli
     profile-sync-daemon
     zen-browser-bin
+    kwin-effects-better-blur-dx
+    kwin-effect-rounded-corners
 )
 
 install_aur_helper() {
