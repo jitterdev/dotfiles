@@ -16,8 +16,12 @@ Rows=1
 
 [Effect-better-blur-dx]
 BlurDecorations=true
+BlurMatching=false
+BlurNonMatching=true
 BlurStrength=10
+CornerRadius=10
 NoiseStrength=11
+WindowClasses=
 
 [Effect-blur]
 NoiseStrength=12
