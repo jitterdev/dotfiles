@@ -1,0 +1,12 @@
+[Unit]
+Description=Save KDE Plasma Session on shutdown
+Before=plasma-ksmserver.service
+PartOf=graphical-session.target
+
+[Service]
+Type=oneshot
+ExecStop=/usr/bin/qdbus6 org.kde.ksmserver /KSMServer org.kde.KSMServerInterface.saveCurrentSession
+RemainAfterExit=true
+
+[Install]
+WantedBy=graphical-session.target
