@@ -1,0 +1,82 @@
+#!/bin/bash
+
+usage() {
+    echo "Usage: mp4 [-o name] URL [quality]"
+    echo "Quality levels: best, high, mid, low (default: high)"
+    echo "Options:"
+    echo "  -o name    Output filename (without extension)"
+    exit 1
+}
+
+if [[ $# -lt 1 ]]; then
+    usage
+fi
+
+output=""
+while getopts ":o:" opt; do
+    case $opt in
+        o) output="$OPTARG" ;;
+        \?) echo "Invalid option: -$OPTARG"; usage ;;
+        :) echo "Option -$OPTARG requires an argument"; usage ;;
+    esac
+done
+shift $((OPTIND - 1))
+
+if [[ $# -lt 1 ]]; then
+    usage
+fi
+
+args=("$@")
+quality="${args[-1]}"
+url=""
+
+if [[ "$quality" =~ ^(best|high|mid|low)$ ]]; then
+    url="${args[*]:0:$#-1}"
+else
+    url="$*"
+    quality="high"
+fi
+
+case "$quality" in
+    best) ytopts="-f bestvideo+bestaudio" ;;
+    high) ytopts="-f bv[height<=1080]+ba/best" ;;
+    mid)  ytopts="-f bv[height<=720]+ba/best" ;;
+    low)  ytopts="-f bv[height<=480]+ba/best" ;;
+esac
+
+if [[ -n "$output" ]]; then
+    outfile="${output}.mp4"
+    template="$output.%(ext)s"
+else
+    outfile=""
+    template="video_%(title)s.%(ext)s"
+fi
+
+echo "Downloading video from $url at $quality quality..."
+
+yt-dlp $ytopts --merge-output-format mp4 -o "$template" "$url"
+
+if [[ -n "$outfile" ]]; then
+    # Single file mode
+    if [[ -f "$outfile" ]]; then
+        echo "Re-encoding $outfile..."
+        ffmpeg -y -i "$outfile" -c:v libx264 -crf 23 -preset veryfast -c:a aac "${outfile%.mp4}_tmp.mp4"
+        if [[ -f "${outfile%.mp4}_tmp.mp4" ]]; then
+            rm "$outfile"
+            mv "${outfile%.mp4}_tmp.mp4" "$outfile"
+        fi
+    fi
+else
+    # Glob mode
+    for f in video_*.mp4; do
+        [[ -f "$f" ]] || continue
+        echo "Re-encoding $f..."
+        ffmpeg -y -i "$f" -c:v libx264 -crf 23 -preset veryfast -c:a aac "${f%.mp4}_tmp.mp4"
+        if [[ -f "${f%.mp4}_tmp.mp4" ]]; then
+            rm "$f"
+            mv "${f%.mp4}_tmp.mp4" "$f"
+        fi
+    done
+fi
+
+echo "Done!"
