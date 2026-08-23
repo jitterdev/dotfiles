@@ -21,7 +21,7 @@ BlurNonMatching=true
 BlurStrength=10
 CornerRadius=10
 NoiseStrength=11
-WindowClasses=
+WindowClasses=robloxstudiobeta.exe
 
 [Effect-blur]
 NoiseStrength=12
@@ -53,6 +53,7 @@ Active=true
 better_blur_dxEnabled=true
 blurEnabled=false
 forceblurEnabled=true
+kwin4_effect_shapecornersEnabled=false
 overviewEnabled=false
 translucencyEnabled=true
 
