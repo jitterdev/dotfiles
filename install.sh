@@ -130,11 +130,22 @@ setup_dotfiles() {
         echo "Backing up conflicting files..."
         while IFS= read -r file; do
             [[ -z "$file" ]] && continue
-            [[ -e "/$file" || -L "/$file" ]] || continue
-            sudo mkdir -p "$BACKUP_DIR/$(dirname "$file")"
-            sudo mv "/$file" "$BACKUP_DIR/$file"
+            if sudo test -e "/$file" || sudo test -L "/$file"; then
+                sudo mkdir -p "$BACKUP_DIR/$(dirname "$file")"
+                sudo mv "/$file" "$BACKUP_DIR/$file"
+            fi
         done < <(dot ls-tree -r HEAD --name-only)
-        dot checkout
+
+        if ! dot checkout; then
+            echo "Error: checkout failed even after backing up conflicts." >&2
+            echo "These tracked paths still exist and could not be moved:" >&2
+            while IFS= read -r file; do
+                if sudo test -e "/$file" || sudo test -L "/$file"; then
+                    echo "  /$file" >&2
+                fi
+            done < <(dot ls-tree -r HEAD --name-only)
+            exit 1
+        fi
     fi
 
     dot config status.showUntrackedFiles no
