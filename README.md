@@ -11,6 +11,8 @@ bash -c "$(curl -fsSL "https://raw.githubusercontent.com/jitterdev/dotfiles/mast
 
 install won't work if you don't have pacman (so you need an arch-based distro, generally), and if you don't have an AUR helper installed, paru will be installed automatically
 
+⚠️ if your run fails, you'll need to do `rm -rf ~/.dotfiles` and `sudo chown -R $(id -un): $(id -gn) ~/.dotfiles-backup` if it exists before you re-run!
+
 ## features
 - **a nice prompt**: git aware, two-line fish prompt with transience and timestamps
 <img width="1086" height="67" src="https://raw.githubusercontent.com/jitterdev/dotfiles/master/preview/prompt.png" />
