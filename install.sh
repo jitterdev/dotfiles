@@ -100,6 +100,18 @@ dot() {
     sudo git --git-dir="$DOTFILES_DIR" --work-tree=/ "$@"
 }
 
+fix_ownership() {
+    local owner
+    owner="$(id -un):$(id -gn)"
+
+    while IFS= read -r file; do
+        [[ -n "$file" && -e "/$file" ]] && sudo chown "$owner" "/$file"
+    done < <(dot ls-tree -r HEAD --name-only)
+
+    sudo chown -R "$owner" "$DOTFILES_DIR"
+    [[ -d "$BACKUP_DIR" ]] && sudo chown -R "$owner" "$BACKUP_DIR"
+}
+
 setup_dotfiles() {
     if [[ -d "$DOTFILES_DIR" ]]; then
         echo "Error: $DOTFILES_DIR already exists"
@@ -126,6 +138,8 @@ setup_dotfiles() {
 
     dot config status.showUntrackedFiles no
     dot config clean.requireForce true
+
+    fix_ownership
 }
 
 # Main
