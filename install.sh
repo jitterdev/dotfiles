@@ -105,11 +105,16 @@ fix_ownership() {
     owner="$(id -un):$(id -gn)"
 
     while IFS= read -r file; do
-        [[ -n "$file" && -e "/$file" ]] && sudo chown "$owner" "/$file"
+        if [[ -n "$file" && (-e "/$file" || -L "/$file") ]]; then
+            sudo chown "$owner" "/$file"
+        fi
     done < <(dot ls-tree -r HEAD --name-only)
 
     sudo chown -R "$owner" "$DOTFILES_DIR"
-    [[ -d "$BACKUP_DIR" ]] && sudo chown -R "$owner" "$BACKUP_DIR"
+
+    if [[ -d "$BACKUP_DIR" ]]; then
+        sudo chown -R "$owner" "$BACKUP_DIR"
+    fi
 }
 
 setup_dotfiles() {
@@ -128,23 +133,25 @@ setup_dotfiles() {
 
     if [[ $checkout_status -ne 0 ]]; then
         echo "Backing up conflicting files..."
+        local moved=0
         while IFS= read -r file; do
             [[ -z "$file" ]] && continue
             if sudo test -e "/$file" || sudo test -L "/$file"; then
                 sudo mkdir -p "$BACKUP_DIR/$(dirname "$file")"
                 sudo mv "/$file" "$BACKUP_DIR/$file"
+                moved=$((moved + 1))
             fi
         done < <(dot ls-tree -r HEAD --name-only)
+        echo "Backed up $moved conflicting file(s) to $BACKUP_DIR"
 
         if ! dot checkout; then
-            echo "Error: checkout failed even after backing up conflicts." >&2
-            echo "These tracked paths still exist and could not be moved:" >&2
-            while IFS= read -r file; do
-                if sudo test -e "/$file" || sudo test -L "/$file"; then
-                    echo "  /$file" >&2
-                fi
-            done < <(dot ls-tree -r HEAD --name-only)
-            exit 1
+            echo "Warning: checkout still reports conflicts after backing up $moved file(s)." >&2
+            read -r -p "Force checkout and overwrite remaining conflicting files? [y/N] " reply
+            if [[ $reply =~ ^[Yy]$ ]]; then
+                dot checkout -f
+            else
+                exit 1
+            fi
         fi
     fi
 
@@ -155,6 +162,7 @@ setup_dotfiles() {
 }
 
 # Main
+sudo -v
 install_packages
 setup_dotfiles
 install_fisher_plugins
