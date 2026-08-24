@@ -122,17 +122,18 @@ setup_dotfiles() {
     git clone --bare "$REPO_URL" "$DOTFILES_DIR"
 
     set +e
-    checkout_output=$(dot checkout 2>&1)
+    dot checkout 2>/dev/null
     checkout_status=$?
     set -e
 
     if [[ $checkout_status -ne 0 ]]; then
         echo "Backing up conflicting files..."
-        echo "$checkout_output" | grep -E "^\s+" | awk '{print $1}' | while read -r file; do
+        while IFS= read -r file; do
             [[ -z "$file" ]] && continue
-            mkdir -p "$BACKUP_DIR/$(dirname "$file")"
+            [[ -e "/$file" || -L "/$file" ]] || continue
+            sudo mkdir -p "$BACKUP_DIR/$(dirname "$file")"
             sudo mv "/$file" "$BACKUP_DIR/$file"
-        done
+        done < <(dot ls-tree -r HEAD --name-only)
         dot checkout
     fi
 
