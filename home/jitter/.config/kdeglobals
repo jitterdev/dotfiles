@@ -10,7 +10,7 @@ IntensityAmount=-1
 IntensityEffect=0
 
 [ColorEffects:Inactive]
-ChangeSelectionColor=true
+ChangeSelectionColor=false
 Color=30, 30, 46
 ColorAmount=0.5
 ColorEffect=3
@@ -21,13 +21,13 @@ IntensityAmount=0
 IntensityEffect=0
 
 [Colors:Button]
-BackgroundAlternate=137,180,250
+BackgroundAlternate=250, 179, 135
 BackgroundNormal=49, 50, 68
-DecorationFocus=137,180,250
-DecorationHover=49, 50, 68
+DecorationFocus=250, 179, 135
+DecorationHover=69, 71, 90
 ForegroundActive=250, 179, 135
 ForegroundInactive=166, 173, 200
-ForegroundLink=137,180,250
+ForegroundLink=250, 179, 135
 ForegroundNegative=243, 139, 168
 ForegroundNeutral=249, 226, 175
 ForegroundNormal=205, 214, 244
@@ -37,11 +37,11 @@ ForegroundVisited=203, 166, 247
 [Colors:Complementary]
 BackgroundAlternate=17, 17, 27
 BackgroundNormal=24, 24, 37
-DecorationFocus=137,180,250
-DecorationHover=49, 50, 68
+DecorationFocus=250, 179, 135
+DecorationHover=69, 71, 90
 ForegroundActive=250, 179, 135
 ForegroundInactive=166, 173, 200
-ForegroundLink=137,180,250
+ForegroundLink=250, 179, 135
 ForegroundNegative=243, 139, 168
 ForegroundNeutral=249, 226, 175
 ForegroundNormal=205, 214, 244
@@ -51,11 +51,11 @@ ForegroundVisited=203, 166, 247
 [Colors:Header]
 BackgroundAlternate=17, 17, 27
 BackgroundNormal=24, 24, 37
-DecorationFocus=137,180,250
-DecorationHover=49, 50, 68
+DecorationFocus=250, 179, 135
+DecorationHover=69, 71, 90
 ForegroundActive=250, 179, 135
 ForegroundInactive=166, 173, 200
-ForegroundLink=137,180,250
+ForegroundLink=250, 179, 135
 ForegroundNegative=243, 139, 168
 ForegroundNeutral=249, 226, 175
 ForegroundNormal=205, 214, 244
@@ -63,27 +63,27 @@ ForegroundPositive=166, 227, 161
 ForegroundVisited=203, 166, 247
 
 [Colors:Selection]
-BackgroundAlternate=137,180,250
-BackgroundNormal=137,180,250
-DecorationFocus=137,180,250
-DecorationHover=49, 50, 68
-ForegroundActive=250, 179, 135
-ForegroundInactive=24, 24, 37
-ForegroundLink=137,180,250
-ForegroundNegative=243, 139, 168
-ForegroundNeutral=249, 226, 175
+BackgroundAlternate=250, 179, 135
+BackgroundNormal=250, 179, 135
+DecorationFocus=250, 179, 135
+DecorationHover=69, 71, 90
+ForegroundActive=17, 17, 27
+ForegroundInactive=17, 17, 27
+ForegroundLink=17, 17, 27
+ForegroundNegative=17, 17, 27
+ForegroundNeutral=17, 17, 27
 ForegroundNormal=17, 17, 27
-ForegroundPositive=166, 227, 161
-ForegroundVisited=203, 166, 247
+ForegroundPositive=17, 17, 27
+ForegroundVisited=17, 17, 27
 
 [Colors:Tooltip]
-BackgroundAlternate=27,25,35
+BackgroundAlternate=17, 17, 27
 BackgroundNormal=30, 30, 46
-DecorationFocus=137,180,250
-DecorationHover=49, 50, 68
+DecorationFocus=250, 179, 135
+DecorationHover=69, 71, 90
 ForegroundActive=250, 179, 135
 ForegroundInactive=166, 173, 200
-ForegroundLink=137,180,250
+ForegroundLink=250, 179, 135
 ForegroundNegative=243, 139, 168
 ForegroundNeutral=249, 226, 175
 ForegroundNormal=205, 214, 244
@@ -93,11 +93,11 @@ ForegroundVisited=203, 166, 247
 [Colors:View]
 BackgroundAlternate=24, 24, 37
 BackgroundNormal=30, 30, 46
-DecorationFocus=137,180,250
-DecorationHover=49, 50, 68
+DecorationFocus=250, 179, 135
+DecorationHover=69, 71, 90
 ForegroundActive=250, 179, 135
 ForegroundInactive=166, 173, 200
-ForegroundLink=137,180,250
+ForegroundLink=250, 179, 135
 ForegroundNegative=243, 139, 168
 ForegroundNeutral=249, 226, 175
 ForegroundNormal=205, 214, 244
@@ -107,11 +107,11 @@ ForegroundVisited=203, 166, 247
 [Colors:Window]
 BackgroundAlternate=17, 17, 27
 BackgroundNormal=24, 24, 37
-DecorationFocus=137,180,250
-DecorationHover=49, 50, 68
+DecorationFocus=250, 179, 135
+DecorationHover=69, 71, 90
 ForegroundActive=250, 179, 135
 ForegroundInactive=166, 173, 200
-ForegroundLink=137,180,250
+ForegroundLink=250, 179, 135
 ForegroundNegative=243, 139, 168
 ForegroundNeutral=249, 226, 175
 ForegroundNormal=205, 214, 244
@@ -119,7 +119,7 @@ ForegroundPositive=166, 227, 161
 ForegroundVisited=203, 166, 247
 
 [General]
-ColorSchemeHash=318898541a271af612b5ed5ec1c5661d725d0f16
+ColorSchemeHash=90d5366d38b1d73424df8aaacdaeac9873759612
 LastUsedCustomAccentColor=233,58,154
 TerminalApplication=kitty
 TerminalService=kitty.desktop
@@ -132,12 +132,11 @@ menuFont=JetBrains Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 smallestReadableFont=JetBrains Mono,8,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 toolBarFont=JetBrains Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 
-[Icons]
-Theme=breeze-dark
-
 [KDE]
 AnimationDurationFactor=0.25
-LookAndFeelPackage=Catppuccin-Mocha-Blue
+LookAndFeelPackage=Catppuccin-Mocha-Peach
+contrast=4
+frameContrast=0.2
 
 [KFileDialog Settings]
 Allow Expansion=false

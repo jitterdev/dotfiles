@@ -21,7 +21,7 @@ BlurNonMatching=true
 BlurStrength=10
 CornerRadius=10
 NoiseStrength=11
-WindowClasses=robloxstudiobeta.exe
+WindowClasses=robloxstudiobeta.exe\nvicinae-server
 
 [Effect-blur]
 NoiseStrength=12
@@ -76,6 +76,10 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 padding=4
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
+[Tiling][1e710131-cb3d-4fd6-9054-b9dfd285b483][ba562830-0811-4360-8f22-be2123048311]
+padding=4
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][1e710131-cb3d-4fd6-9054-b9dfd285b483][d86a0588-860e-486a-844f-4b2c02809cde]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
@@ -87,6 +91,10 @@ padding=4
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][36f3cf90-110d-4cce-8379-a13eefac7f53][b6dd49ce-2b3c-400d-91ec-73c1d61bd5ac]
+padding=4
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][36f3cf90-110d-4cce-8379-a13eefac7f53][ba562830-0811-4360-8f22-be2123048311]
 padding=4
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
@@ -104,6 +112,10 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 padding=4
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
+[Tiling][38eccd42-1245-42c3-bc1a-abbf630a833d][ba562830-0811-4360-8f22-be2123048311]
+padding=4
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][38eccd42-1245-42c3-bc1a-abbf630a833d][d86a0588-860e-486a-844f-4b2c02809cde]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
@@ -118,6 +130,10 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 padding=4
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
+[Tiling][a3290cb1-26ef-4dc1-9ee4-c27399503419][ba562830-0811-4360-8f22-be2123048311]
+padding=4
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][a3290cb1-26ef-4dc1-9ee4-c27399503419][d86a0588-860e-486a-844f-4b2c02809cde]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
@@ -128,7 +144,4 @@ EnablePrimarySelection=false
 Scale=1
 
 [org.kde.kdecoration2]
-BorderSize=Tiny
 BorderSizeAuto=false
-library=org.kde.breeze
-theme=Breeze
