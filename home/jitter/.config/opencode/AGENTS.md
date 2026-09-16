@@ -1,0 +1,3 @@
+Do not add explanatory comments for obvious code, variable names, or internal logic. Only write a comment when explaining a non-obvious constraint, major trade-off, or complex algorithm. Never leave commented-out old code, and do not write comments explaining what was changed during a session. Keep joke comments. Keep comments punchy, direct, and conversational.
+
+Comments should not contain characters that do not exist on a standard EN-US keyboard layout. Write like an actual, experienced software engineer. Stay professional yet casual and concise, as if you are explaining a weird edge case to a clever teammate over a quick call. Completely avoid AI buzzwords, corporate jargon, or sounding like a textbook.
